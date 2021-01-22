@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:navbartesting/providers/provider_nave.dart';
 import 'package:navbartesting/test_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -65,10 +67,11 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    NaveProvider naveProvider = Provider.of<NaveProvider>(context);
     return Scaffold(
       body: PersistentTabView(
         context,
-        hideNavigationBar: _hideNavBar,
+        hideNavigationBar: naveProvider.load,
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
